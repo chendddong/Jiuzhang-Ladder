@@ -97,7 +97,7 @@ class Solution:
 # THE WAY AND WHEN TO USE STEP
 # TEMPLATE OF is_valid_point
 
-# Solution 2 Math 93%
+# Solution 2 Math TLE 93%
 # 
 # TAG:[MATH, FORLOOP, AXIS]
 # 
@@ -150,3 +150,67 @@ class Solution:
             dis += abs(j - y)
         return dis
 
+
+# Solution 3 Math PASS review later
+# 
+# TAG:[MATH]
+'''
+    * project the houses' index onto the x-axis and y-axis and record it as
+    row_count and col_count
+    * for every empty location
+'''
+
+EMPTY = 0
+HOUSE = 1
+
+class Solution:
+    """
+    @param grid: a 2D grid
+    @return: An integer
+    """
+
+    # [
+    #  [0,1,0,0],
+    #  [1,0,1,1],
+    #  [0,1,0,0]
+    # ]
+    # |1
+    # |3
+    # |1
+    # -------------
+    # 1 2 1 1
+
+    # [
+    #  [0,1,0,0],
+    #  [1,✔️,1,1],
+    #  [0,1,0,0]
+    def shortestDistance(self, grid):
+        if not grid or not grid[0]:
+            return -1
+        
+        m, n = len(grid), len(grid[0])
+        row_count, col_count = [0] * m, [0] * n
+        result = sys.maxsize
+        
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == HOUSE:
+                    row_count[i] += 1
+                    col_count[j] += 1
+
+        row_distance = self.get_distance(row_count)
+        col_distance = self.get_distance(col_count)
+        
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == EMPTY:
+                    result = min(result, row_distance[i] + col_distance[j])
+        return result
+
+    def get_distance(self, count):
+        length = len(count)
+        distance = [0] * length
+        for i in range(length):
+            for j in range(length):
+                distance[i] += count[j] * abs(j - i)
+        return distance
