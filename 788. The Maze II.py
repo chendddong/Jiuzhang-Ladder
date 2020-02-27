@@ -44,7 +44,7 @@ Example 2:
 
 # Solution 1 BFS
 # 
-# TAG:[BFS, STRING, BACKTRACKING]
+# TAG:[BFS, STRING, BACKTRACKING, DFS]
 DELTA = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 class Solution:
     """
@@ -125,8 +125,8 @@ class Solution:
 # added later would be the data type.
 
 
-
-
+# Solution 2 DFS REVIEW AFTER DFS 
+DELTA = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 class Solution:
     """
     @param maze: the maze
@@ -135,49 +135,42 @@ class Solution:
     @return: the shortest distance for the ball to stop at the destination
     """
     def shortestDistance(self, maze, start, destination):
-        # write your code here
-        # bfs
+        paths = []
         start = (start[0], start[1])
         destination = (destination[0], destination[1])
-        visited = {}
-        from queue import Queue
-        q = Queue()
-        q.put(start)
-        visited[start] = 0
-        
-        while not q.empty():
-            point = q.get()
-            next_points = self.get_next_point(point, maze, visited)
-            for next_point in next_points:
-                if next_point in visited:
-                    if next_points[next_point] < visited[next_point]:
-                        visited[next_point] = next_points[next_point]
-                else:
-                    q.put(next_point)
-                    visited[next_point] = next_points[next_point]
-              
-        if destination in visited:
-            return visited[destination]
-        return -1
-        
-    def get_next_point(self, point, maze, visited):
-        points = {}
-        deltas = [(-1, 0), (1, 0), (0, -1), (0, 1)]
-        max_x = len(maze) - 1
-        max_y = len(maze[0]) - 1
-        
-        for dx, dy in deltas:
-            x, y = point
-            count = -1
-            while x >= 0 and x <= max_x and y >= 0 and y <= max_y and maze[x][y] == 0:
+        visited = set([start])
+
+        self.dfs(maze, start, destination, 0, visited, paths)
+        if len(paths) == 0:
+            return -1
+        return min(paths)
+
+    def dfs(self, maze, start, destination, step, visited, paths):
+        if start == destination:
+            paths.append(step)
+            return
+        # no parenthesis to loop a tuple
+        for dx, dy in DELTA:
+            (x, y) = start
+            starting_step = step
+            while 0 <= x < len(maze) and 0 <= y < len(maze[0]) and maze[x][y] == 0:
                 x += dx
                 y += dy
-                count += 1
-            points[(x - dx, y - dy)] = visited[point] + count
-        
-        return points
+                starting_step += 1 # go forward
+            x -= dx
+            y -= dy
+            starting_step -= 1 # step back one steps if encounters objects
 
+            if (x, y) not in visited:
+                visited.add((x, y))
+                self.dfs(maze, (x, y), destination, starting_step, visited,
+                    paths)
+                visited.remove((x, y))
 
+# Takeaway:
+# why back tracking?
+# when back tracking?
+# the way to construct DFS or recursion
 
 
 
