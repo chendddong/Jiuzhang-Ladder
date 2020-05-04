@@ -85,7 +85,7 @@ class Solution:
 # When popping out of the queue, we need to go to the next for level to get all
 # the possible words that we can get
 
-# Solution 2 BFS based on solution 1, use hashmap to store the distance save
+# Solution 2 BFS based on solution 1, use hash map to store the distance save
 # some time
 class Solution:
     """
@@ -126,5 +126,3 @@ class Solution:
 # Takeaways:
 # Use hashMap: store the word and the same time the answer, reduce the time,
 # increase the space
-
-'''Test
