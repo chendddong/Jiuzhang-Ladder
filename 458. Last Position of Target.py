@@ -46,4 +46,4 @@ class Solution:
 # Takeaways:
 # mid = (start + end) // 2
 #     remember to use the parentheses
-# Remember that different questions we should you different start, mid, end
+# Remember that different questions should be using different start, mid, end

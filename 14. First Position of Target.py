@@ -29,7 +29,7 @@ Example 3:
 '''
 
 # TAG:[Binary Search, Template, Log(n)]
-# TAG:[Binary Search, Template, Log(n)]
+
 class Solution:
     """
     @param nums: The integer array.
