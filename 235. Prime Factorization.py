@@ -30,7 +30,7 @@ class Solution:
             while num % k == 0:
                 num //= k
                 result.append(k)
-            k += 1
+            k += 1chuc
 
         if num > 1:
             result.append(num)

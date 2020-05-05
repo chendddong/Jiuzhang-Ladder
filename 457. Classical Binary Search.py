@@ -11,7 +11,9 @@ Example 2:
 Input: nums = [1,2,2,4,5,5], target = 6
 Output: -1
 '''
-# TAG:[Binary Search, Template, Log(n)]
+
+# Solution 1 No recursion
+# TAG:[Binary Search, Template, Log(n), Recursion]
 
 class Solution:
     """
@@ -46,3 +48,6 @@ class Solution:
 #   1.  nums is None(null)
 #   2.  nums is empty([])
 # Remember that different questions should be using different start, mid, end
+
+# with if and return, the next statement should be 'if' not elif
+#   see line from 39 to 42
