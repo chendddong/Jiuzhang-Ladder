@@ -28,7 +28,7 @@ Challenge
 O(log(n) + log(m)) time
 '''
 
-# TAG:[Rotated sorted array]
+# TAG:[Binary Search, 2D Matrix]
 
 class Solution:
     """
