@@ -62,13 +62,13 @@ class Solution:
                 i += 1
                 j -= 1
         # Go left
-        if start + K - 1 <= j:
+        if j >= K - 1 and start <= j:
             return self.quick_select(nums, start, j, K)
         # Go right
-        if start + K - 1 >= i:
-            return self.quick_select(nums, i, end, K - (i - start)) # index!
-        # One number between two index
-        return nums[j + 1]
+        if i <= K - 1 and i <= end:
+            return self.quick_select(nums, i, end, K)
+        # Target
+        return nums[K - 1]
 
 # Takeaways:
 # Simulate the logic and relive the process!
